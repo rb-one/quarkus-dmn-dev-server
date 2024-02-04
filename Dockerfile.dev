@@ -1,0 +1,15 @@
+FROM maven:3.8.7
+
+RUN mvn io.quarkus.platform:quarkus-maven-plugin:2.16.3.Final:create \
+    -DprojectGroupId=org.acme \
+    -DprojectArtifactId=kogito-dmn-quickstart \
+    -Dextensions='dmn,resteasy-reactive-jackson' \
+    -DnoCode
+
+WORKDIR /kogito-dmn-quickstart
+
+COPY rules/ src/main/resources/
+
+
+CMD ["mvn",  "quarkus:dev", "-Ddebug=5005", "-Dquarkus.http.host=0.0.0.0", "-Dquarkus.live-reload.password="]
+

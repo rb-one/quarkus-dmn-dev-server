@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  drools-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8080:8080"
+      - "5005:5005"
+    volumes:
+      - ./rules:/kogito-dmn-quickstart/src/main/resources/
